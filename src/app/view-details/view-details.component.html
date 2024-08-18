@@ -1,0 +1,12 @@
+<mat-card class="mat-card">
+  <h1 style="text-align: center;">Employee Details</h1>
+
+  <ng-container *ngIf="item">
+    <div class="detailrow"><strong>Employee ID : </strong>{{item.id}}</div>
+    <div class="detailrow"> <strong>Employee Name : </strong>{{item.name}}</div>
+    <div class="detailrow"><strong>Language : </strong>{{item.language}}</div>
+    <div class="detailrow"><strong>Version : </strong> {{item.version}}</div>
+    <div class="detailrow"><strong>Bio : </strong>{{item.bio}}</div>
+
+  </ng-container>
+</mat-card>

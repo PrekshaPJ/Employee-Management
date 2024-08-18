@@ -1,0 +1,32 @@
+<div *ngIf="data.length > 0">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef> {{ column | titlecase }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="!editingRow || editingRowIndex !== dataSource.data.indexOf(element); else editMode">
+          {{ element[column] }}
+        </div>
+
+        <ng-template #editMode>
+          <input matInput [(ngModel)]="element[column]" />
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef> View </th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/view', element.id]" routerLinkActive="active">View</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns.concat('view')"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns.concat('view');"
+      (click)="startEditRow(row, dataSource.data.indexOf(row))">
+    </tr>
+
+  </table>
+
+</div>
